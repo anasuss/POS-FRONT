@@ -1,0 +1,117 @@
+<p-toast />
+<form [formGroup]="employeeSearch" class="employee-search">
+  <div class="flex flex-column gap-2 employee-search-box">
+    <label for="employee-name">Employee Name</label>
+    <input
+      pInputText
+      id="employee-name"
+      aria-describedby="employee-name-help"
+      formControlName="nameSubstr"
+      class="employee-search-input"
+    />
+  </div>
+</form>
+<p-button
+  (onClick)="addEmployeeModal()"
+  icon="pi pi-user-plus"
+  label="Add Employee"
+  [raised]="true"
+  severity="secondary"
+/>
+<p-button
+  (onClick)="addEmployeeModal()"
+  icon="pi pi-file-import"
+  label="Add Employee"
+  [raised]="true"
+  severity="secondary"
+/>
+<div class="card">
+  <p-table
+    [value]="employees"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    (onPage)="pageChange($event)"
+    [rowsPerPageOptions]="[10, 15, 20]"
+    [totalRecords]="totalRecords"
+    [lazy]="true"
+    sortField="number"
+    [sortOrder]="-1"
+    [loading]="loading"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="number" style="width: 20%">
+          Number <p-sortIcon field="number" />
+        </th>
+        <th pSortableColumn="name" style="width: 20%">
+          Name <p-sortIcon field="name" />
+        </th>
+        <th pSortableColumn="gender" style="width: 20%">
+          Gender <p-sortIcon field="gender" />
+        </th>
+        <th pSortableColumn="phone" style="width: 20%">
+          Phone <p-sortIcon field="phone" />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td>{{ employee.number }}</td>
+        <td>{{ employee.first_name + " " + employee.last_name }}</td>
+        <td>{{ employee.gender }}</td>
+        <td>{{ employee.phone_number }}</td>
+      </tr>
+    </ng-template>
+    <!-- <ng-template pTemplate="paginatorleft">
+      <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" />
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+      <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text" />
+    </ng-template> -->
+  </p-table>
+</div>
+
+<!-- <div class="card">
+  <p-table
+    [value]="employees"
+    [paginator]="true"
+    [rows]="5"
+    [totalRecords]="totalRecords"
+    [lazy]="true"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    sortField="number"
+    [sortOrder]="-1"
+    [tableStyle]="{ 'min-width': '60rem' }"
+    (onPage)="onPageChange($event)"
+    [loading]="loading"
+    currentPageReportTemplate=" {first}-{last} on {totalRecords}"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="number" style="width: 20%">
+          Number <p-sortIcon field="number" />
+        </th>
+        <th pSortableColumn="name" style="width: 20%">
+          Name <p-sortIcon field="name" />
+        </th>
+        <th pSortableColumn="gender" style="width: 20%">
+          Gender <p-sortIcon field="gender" />
+        </th>
+        <th pSortableColumn="phone" style="width: 20%">
+          Phone <p-sortIcon field="phone" />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td>{{ employee.number }}</td>
+        <td>{{ employee.first_name + " " + employee.last_name }}</td>
+        <td>{{ employee.gender }}</td>
+        <td>{{ employee.phone_number }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div> -->

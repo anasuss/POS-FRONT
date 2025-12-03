@@ -1,0 +1,152 @@
+<form
+  [formGroup]="employeeForm"
+  (ngSubmit)="onSubmit()"
+  class="employee-form md-form"
+>
+  <div class="md-form-grid">
+    <!-- First / Last -->
+    <div class="card flex justify-content-center md-field">
+      <label for="firstName">First Name*</label>
+      <input
+        type="text"
+        pInputText
+        id="firstName"
+        type="text"
+        formControlName="firstName"
+      />
+    </div>
+
+    <div class="md-field">
+      <label for="lastName">Last Name*</label>
+      <input id="lastName" type="text" pInputText formControlName="lastName" />
+    </div>
+
+    <!-- Number / Gender -->
+    <div class="flex-auto md-field">
+      <label for="number">Number*</label>
+      <p-inputNumber
+        mode="decimal"
+        inputId="withoutgrouping"
+        [useGrouping]="false"
+        id="number"
+        formControlName="number"
+      />
+    </div>
+
+    <div class="md-field">
+      <label for="gender">Gender*</label>
+      <p-dropdown
+        id="gender"
+        [options]="genderOptions"
+        formControlName="gender"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Select gender"
+        class="md-control"
+      ></p-dropdown>
+    </div>
+
+    <!-- Phone / Job Position -->
+    <div class="md-field">
+      <label for="phone">Phone*</label>
+      <input id="phone" type="text" pInputText formControlName="phone" />
+    </div>
+    <div class="md-field">
+      <label for="email">Email*</label>
+      <input id="email" type="email" pInputText formControlName="email" />
+      <small
+        class="p-error"
+        *ngIf="
+          employeeForm.get('email')?.invalid &&
+          employeeForm.get('email')?.touched
+        "
+      >
+        Please enter a valid email.
+      </small>
+    </div>
+    <div class="md-field">
+      <label for="jobPosition">Job Position*</label>
+      <p-multiSelect
+        id="jobPosition"
+        [options]="roleOptions"
+        formControlName="jobPosition"
+        optionLabel="label"
+        optionValue="value"
+        class="md-control"
+        placeholder="Select role"
+      ></p-multiSelect>
+    </div>
+
+    <!-- Address / Birth date -->
+    <div class="md-field">
+      <label for="address">Address*</label>
+      <input id="address" type="text" pInputText formControlName="address" />
+    </div>
+
+    <div class="md-field">
+      <label for="birthDate">Birth Date*</label>
+      <p-calendar
+        id="birthDate"
+        formControlName="birthDate"
+        dateFormat="yy-mm-dd"
+        class="md-control"
+        [showIcon]="true"
+        appendTo="body"
+      ></p-calendar>
+    </div>
+
+    <!-- Contract type / CNSS -->
+    <div class="md-field">
+      <label for="contractType">Contract Type*</label>
+      <p-dropdown
+        id="contractType"
+        [options]="contractOptions"
+        formControlName="contractType"
+        optionLabel="label"
+        optionValue="value"
+        class="md-control"
+      ></p-dropdown>
+    </div>
+
+    <div class="md-field">
+      <label for="cnssNumber">Cnss Registration Number*</label>
+      <input
+        id="cnssNumber"
+        type="text"
+        pInputText
+        formControlName="cnssNumber"
+      />
+
+      <small
+        class="p-error"
+        *ngIf="employeeForm.hasError('cnssRequired') && cnssCtrl?.touched"
+      >
+        CNSS is required for CDI and CDD.
+      </small>
+      <small
+        class="p-error"
+        *ngIf="employeeForm.hasError('cnssFormat') && cnssCtrl?.touched"
+      >
+        CNSS must be ########-##.
+      </small>
+    </div>
+  </div>
+
+  <!-- bottom row -->
+  <div class="md-bottom-row">
+    <div class="md-active">
+      <p-inputSwitch formControlName="active"></p-inputSwitch>
+      <span>Active</span>
+    </div>
+    <div class="card flex justify-content-center">
+      <p-button
+        type="submit"
+        label="Add Employee"
+        icon="pi pi-plus"
+        class="md-submit"
+        [loading]="isSubmitting"
+        [disabled]="employeeForm.invalid"
+      ></p-button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,27 @@
+.employee-search {
+  margin-bottom: 0.75rem;
+}
+
+/* Outer white box with rounded corners */
+.employee-search-box {
+  border: 1px solid #b9c2c9;
+  border-radius: 4px;
+  background: #f8f8f8;
+  padding: 0.75rem 1rem;
+}
+
+/* Full‑width, underline style input */
+.employee-search-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.employee-search-input:focus {
+  outline: none;
+  box-shadow: none;
+  border-bottom-color: #607d8b; /* adjust to your theme color */
+}
