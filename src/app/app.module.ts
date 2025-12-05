@@ -27,6 +27,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ImportEmployeeComponent } from './import-employee/import-employee.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MessageService } from 'primeng/api';
     EmployeesComponent,
     AddEmployeeComponent,
     PageNotFoundComponent,
+    ImportEmployeeComponent,
   ],
   imports: [
     BrowserModule,

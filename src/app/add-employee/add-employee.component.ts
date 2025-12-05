@@ -47,13 +47,7 @@ export class AddEmployeeComponent {
   ) {
     this.employeeForm = this.createForm();
   }
-  show() {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Message Content',
-    });
-  }
+
   private createForm(): FormGroup {
     return this.fb.group(
       {

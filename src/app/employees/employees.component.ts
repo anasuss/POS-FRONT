@@ -9,6 +9,7 @@ import { debounceTime } from 'rxjs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
+import { ImportEmployeeComponent } from '../import-employee/import-employee.component';
 
 @Component({
   selector: 'app-employees',
@@ -73,14 +74,21 @@ export class EmployeesComponent implements OnInit {
   }
 
   addEmployeeModal() {
-    this.ref = this.dialogService.open(AddEmployeeComponent, {
-      header: 'Add New Employee',
-      width: '50%',
+    this.ref = this.dialogService.open(AddEmployeeComponent, {});
+
+    this.ref.onClose.subscribe(() => {
+      this.loadEmployees();
+    });
+  }
+
+  importEmployeeModal() {
+    this.ref = this.dialogService.open(ImportEmployeeComponent, {
+      width: '70%',
+      height: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
     });
-
     this.ref.onClose.subscribe(() => {
       this.loadEmployees();
     });
